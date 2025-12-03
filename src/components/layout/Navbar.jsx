@@ -1,9 +1,11 @@
 import React from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import "./Navbar.css"
-const WHATSAPP_NUMBER = '34685652049'
+import Divider from '../ui/Divider'
+
+const WHATSAPP_NUMBER = '34685562049'
 const WHATSAPP_TEXT = encodeURIComponent(
-  'Hola, quiero pedir cita o presupuesto para mi coche.'
+  'Hola, quiero pedir cita o presupuesto para mi coche.\n\nServicio que necesito:'
 )
 
 function Navbar({ activeSection }) {
@@ -24,25 +26,14 @@ function Navbar({ activeSection }) {
     `app-nav-section ${activeSection === id ? 'active' : ''}`
 
   return (
+    <>
     <header className="app-header">
       <div className="app-header-inner">
         <div className="app-logo-block">
-          <div className="app-logo-mark">
-            {/* cuando tengas el logo optimizado, cámbialo aquí */}
-            <img src="/logo-cardonal.png" alt="Auto Mecánica El Cardonal" />
-          </div>
-          <div className="app-logo-text">
-            <span className="app-logo-title">Auto Mecánica El Cardonal</span>
-            <span className="app-logo-subtitle">
-              Mecánica en general · Servicio rápido
-            </span>
-          </div>
+          <img src="/logo.svg" alt="Auto Mecánica El Cardonal" className="app-logo" />
         </div>
 
         <nav className="app-nav">
-          <NavLink to="/" end>
-            Inicio
-          </NavLink>
           <button
             type="button"
             className={sectionLinkClass('services')}
@@ -82,7 +73,9 @@ function Navbar({ activeSection }) {
           </a>
         </nav>
       </div>
+      <Divider/>
     </header>
+    </>
   )
 }
 

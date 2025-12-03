@@ -4,6 +4,12 @@ export function useSectionObserver(sectionIds = []) {
   const [activeSection, setActiveSection] = useState(null)
 
   useEffect(() => {
+    if (!('IntersectionObserver' in window)) {
+      // fallback simple: si no hay IO, marcamos siempre la primera sección
+      if (sectionIds.length > 0) setActiveSection(sectionIds[0])
+      return
+    }
+
     const observers = []
 
     sectionIds.forEach(id => {
@@ -16,7 +22,10 @@ export function useSectionObserver(sectionIds = []) {
             setActiveSection(id)
           }
         },
-        { threshold: 0.4 }
+        {
+          threshold: 0.4,
+          rootMargin: '0px 0px -20% 0px', 
+        }
       )
 
       observer.observe(el)

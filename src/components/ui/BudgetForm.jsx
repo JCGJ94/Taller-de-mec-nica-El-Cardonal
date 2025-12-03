@@ -26,9 +26,11 @@ function BudgetForm() {
   const validate = () => {
     const newErrors = {}
     if (!formData.name.trim()) newErrors.name = 'El nombre es obligatorio.'
-    if (!formData.phone.trim()) newErrors.phone = 'El teléfono es obligatorio.'
-    if (!/^\+?\d{7,15}$/.test(formData.phone.trim()))
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'El teléfono es obligatorio.'
+    } else if (!/^\+?\d{7,15}$/.test(formData.phone.trim())) {
       newErrors.phone = 'Introduce un teléfono válido.'
+    }
     if (!formData.email.trim()) newErrors.email = 'El email es obligatorio.'
     if (
       formData.email &&
@@ -222,9 +224,8 @@ function BudgetForm() {
 
       {status.message && (
         <p
-          className={`status-message ${
-            status.success ? 'status-success' : 'status-error'
-          }`}
+          className={`status-message ${status.success ? 'status-success' : 'status-error'
+            }`}
         >
           {status.message}
         </p>

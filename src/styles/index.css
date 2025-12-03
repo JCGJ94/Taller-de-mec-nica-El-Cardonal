@@ -1,6 +1,6 @@
 :root {
   --bg-main: #020617;
-  --bg-surface: #020617;
+  --bg-surface: #02081f;
   --border-soft: #1f2937;
 
   --text-main: #e5e7eb;
@@ -35,9 +35,16 @@ h5 {
 }
 
 /* contenedores generales */
-
 section {
-  background: var(--bg-surface);
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+}
+.section-card {
+  background: #02081f;
   border-radius: 0.9rem;
   padding: 1.75rem 1.5rem;
   border: 1px solid var(--border-soft);
@@ -81,4 +88,15 @@ section {
 .btn-secondary:hover {
   background: rgba(15, 23, 42, 0.7);
   border-color: var(--accent-red-soft);
+}
+
+.gradient-divider {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg,
+      #22c55e,
+      #3b82f6,
+      #22c55e);
+  border-radius: 999px;
+  box-shadow: 0 0 12px rgba(34, 197, 94, 0.35);
 }

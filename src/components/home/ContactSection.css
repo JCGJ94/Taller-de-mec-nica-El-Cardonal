@@ -1,0 +1,12 @@
+.contact-section {
+  border-color: #1d4ed8;
+}
+
+.contact-section a {
+  color: #93c5fd;
+  text-decoration: underline;
+}
+
+.contact-section a:hover {
+  color: #bfdbfe;
+}
