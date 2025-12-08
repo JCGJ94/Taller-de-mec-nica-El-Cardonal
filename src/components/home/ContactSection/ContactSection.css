@@ -1,12 +1,110 @@
+/* ===== CONTENEDOR GENERAL ===== */
 .contact-section {
-  border-color: #1d4ed8;
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    border-radius: 1.2rem;
+    background: rgba(255, 255, 255, 0.06); /* translúcido elegante */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    max-width: 600px;
+    margin: 4rem auto;
+    animation: fadeIn 0.8s ease;
 }
 
-.contact-section a {
-  color: #93c5fd;
-  text-decoration: underline;
+/* Títulos */
+.contact-section h3 {
+    font-size: 1.7rem;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
 }
 
-.contact-section a:hover {
-  color: #bfdbfe;
+/* Texto */
+.contact-section p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+/* ===== BOTONES RÁPIDOS (Llamar / Email) ===== */
+.quick-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.quick-btn {
+    padding: 0.8rem 1.3rem;
+    background: var(--primary, #2d72ff);
+    color: #fff;
+    border-radius: 0.8rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: transform 0.2s ease, background 0.3s;
+}
+
+.quick-btn:hover {
+    background: var(--primary-dark, #1a4ecf);
+    transform: translateY(-2px);
+}
+
+/* ===== ENLACE EMAIL (opción minimalista) ===== */
+.email-link {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    color: var(--primary, #2d72ff);
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.email-link:hover {
+    opacity: 0.8;
+    transform: translateY(-2px);
+}
+
+/* ===== MINI FORMULARIO RÁPIDO ===== */
+.quick-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.quick-form input {
+    padding: 0.9rem 1rem;
+    border-radius: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(0,0,0,0.2);
+    color: #fff;
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+.quick-form input:focus {
+    border-color: var(--primary, #2d72ff);
+    box-shadow: 0 0 0 2px rgba(45, 114, 255, 0.25);
+}
+
+.quick-form button {
+    padding: 0.9rem 1.2rem;
+    border-radius: 0.8rem;
+    border: none;
+    background: var(--primary, #2d72ff);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s;
+}
+
+.quick-form button:hover {
+    background: var(--primary-dark, #1a4ecf);
+    transform: translateY(-2px);
+}
+
+/* ===== ANIMACIÓN ===== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }

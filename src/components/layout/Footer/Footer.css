@@ -1,7 +1,7 @@
 .app-footer {
     background-color: var(--bg-surface);
     border-top: 1px solid var(--border-soft);
-    padding: 4rem 1.5rem 2rem;
+    padding: 3rem 1.5rem 2rem;
     color: var(--text-muted);
     font-size: 0.95rem;
 }
@@ -15,41 +15,164 @@
     margin-bottom: 3rem;
 }
 
+/* Footer columns */
+.footer-column {
+    transition: transform 0.3s ease;
+}
+
+
+
 .app-footer h4 {
     color: var(--text-main);
-    font-size: 1.1rem;
-    margin-bottom: 1.2rem;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
     font-weight: 600;
+    text-align: left;
+    position: relative;
 }
 
-.app-footer p {
+.app-footer h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 2px;
+    background: var(--primary-color);
+    border-radius: 2px;
+}
+
+/* Footer items */
+.footer-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     margin-bottom: 0.8rem;
     line-height: 1.6;
+    transition: all 0.2s ease;
 }
 
-.footer-highlight-link {
-    color: #2563eb;
-    font-weight: 700;
+.footer-item:hover {
+    transform: translateX(3px);
+}
+
+.footer-icon {
+    font-size: 1rem;
+    min-width: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Footer links */
+.footer-link {
+    color: var(--text-muted);
     text-decoration: none;
-    font-size: 1.1rem;
-    transition: color 0.2s ease, text-shadow 0.2s ease;
-    border-bottom: 1px dashed #2563eb;
-    padding-bottom: 2px;
+    transition: color 0.2s ease;
 }
 
-.footer-highlight-link:hover {
-    color: #1d4ed8;
-    text-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
-    border-bottom-style: solid;
+.footer-link:hover {
+    color: var(--primary-color);
 }
 
+/* WhatsApp link */
+.whatsapp-link {
+    color: #25d366;
+    font-weight: 500;
+}
+
+.whatsapp-link:hover {
+    color: #1fb855;
+}
+
+/* Email/Budget link */
+.email-link {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--primary-color);
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    background: rgba(59, 130, 246, 0.1);
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.email-link:hover {
+    background: rgba(59, 130, 246, 0.2);
+    transform: translateX(5px);
+    color: #60a5fa;
+}
+
+/* Footer bottom */
 .app-footer-bottom {
     text-align: center;
     padding-top: 2rem;
     border-top: 1px solid rgba(31, 41, 55, 0.5);
 }
 
-.app-footer-bottom small {
+.app-footer-bottom p {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.app-footer-bottom strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.footer-tagline {
     font-size: 0.85rem;
+    color: var(--text-muted);
     opacity: 0.8;
+    font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .app-footer {
+        padding: 3rem 1rem 1.5rem;
+    }
+
+    .app-footer-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .footer-column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .app-footer h4 {
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    .footer-item {
+        font-size: 0.9rem;
+        justify-content: center;
+    }
+
+    .email-link {
+        font-size: 0.85rem;
+    }
+}
+
+/* Highlighted About Link */
+.about-link {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1.05rem;
+    /* Slightly larger */
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: all 0.3s ease;
+}
+
+.about-link:hover {
+    color: var(--text-main);
+    transform: translateX(3px);
+    display: inline-block;
 }

@@ -5,7 +5,17 @@ function ScrollNextButton({ targetId, label = 'Ir a la siguiente sección' }) {
   const handleClick = () => {
     const el = document.getElementById(targetId)
     if (!el) return
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+
+    // Calcular la altura del navbar para ajustar el scroll
+    const navbar = document.querySelector('.app-header')
+    const navbarHeight = navbar ? navbar.offsetHeight : 0
+    const elementPosition = el.getBoundingClientRect().top + window.pageYOffset
+    const offsetPosition = elementPosition - navbarHeight - 20 // 20px de margen adicional
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    })
   }
 
   return (
@@ -15,7 +25,7 @@ function ScrollNextButton({ targetId, label = 'Ir a la siguiente sección' }) {
       onClick={handleClick}
       aria-label={label}
     >
-       <svg
+      <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20"
         height="20"

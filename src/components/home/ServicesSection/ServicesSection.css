@@ -173,7 +173,7 @@
 /* Responsive */
 @media (max-width: 768px) {
   .services-main-title {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .home-services-grid {

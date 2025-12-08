@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import emailjs from '@emailjs/browser'
+import Toast from '@/components/ui/Toast/Toast.jsx'
 import './BudgetForm.css'
 import {
   EMAILJS_SERVICE_ID,
@@ -22,6 +23,16 @@ function BudgetForm() {
   const [formData, setFormData] = useState(initialForm)
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState({ loading: false, success: null, message: '' })
+  const [showToast, setShowToast] = useState(false)
+
+  // Initialize EmailJS
+  useEffect(() => {
+    if (EMAILJS_PUBLIC_KEY) {
+      emailjs.init(EMAILJS_PUBLIC_KEY)
+    } else {
+      console.error('EmailJS Public Key is missing. Please check your .env file.')
+    }
+  }, [])
 
   const validate = () => {
     const newErrors = {}
@@ -57,6 +68,19 @@ function BudgetForm() {
 
     if (Object.keys(validationErrors).length > 0) return
 
+    // Check if EmailJS is configured
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      setStatus({
+        loading: false,
+        success: false,
+        message:
+          'Error de configuración. Por favor, contacta con nosotros por WhatsApp o email.'
+      })
+      setShowToast(true)
+      console.error('EmailJS configuration is incomplete. Please check your .env file.')
+      return
+    }
+
     setStatus({ loading: true, success: null, message: '' })
 
     try {
@@ -81,16 +105,18 @@ function BudgetForm() {
         success: true,
         message: '¡Solicitud enviada! Te responderemos lo antes posible.'
       })
+      setShowToast(true)
       setFormData(initialForm)
       setErrors({})
     } catch (err) {
-      console.error(err)
+      console.error('EmailJS Error:', err)
       setStatus({
         loading: false,
         success: false,
         message:
           'Ha ocurrido un error al enviar el formulario. Puedes escribirnos por WhatsApp o email.'
       })
+      setShowToast(true)
     }
   }
 
@@ -222,13 +248,12 @@ function BudgetForm() {
         </a>
       </div>
 
-      {status.message && (
-        <p
-          className={`status-message ${status.success ? 'status-success' : 'status-error'
-            }`}
-        >
-          {status.message}
-        </p>
+      {showToast && status.message && (
+        <Toast
+          message={status.message}
+          type={status.success ? 'success' : 'error'}
+          onClose={() => setShowToast(false)}
+        />
       )}
     </form>
   )

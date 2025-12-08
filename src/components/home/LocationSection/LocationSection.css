@@ -1,7 +1,9 @@
 .location-section {
     background-color: var(--bg-secondary);
-    padding: 4rem 1rem;
+    padding: 6rem 1rem;
     text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
 .location-container {
@@ -9,83 +11,219 @@
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 4rem;
     align-items: center;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
     .location-container {
         grid-template-columns: 1fr 1fr;
         text-align: left;
     }
-}
 
-.location-info h3 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: var(--text-primary);
-}
+    .location-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* Centers content including button */
+    }
 
-.location-info p {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-}
-
-.address-block {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    justify-content: center;
-    align-items: center;
-}
-
-@media (min-width: 768px) {
-    .address-block {
-        justify-content: flex-start;
+    /* Verify if text needs to be left aligned, but usually center looks good if requested "center button below horary" */
+    .section-header,
+    .info-cards {
+        width: 100%;
+        /* Ensure they take full width if we want internal alignment */
     }
 }
 
-.location-icon {
-    font-size: 1.5rem;
+/* ===== ANIMACIÓN FADE IN GENÉRICA ===== */
+.fade-in {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.7s ease forwards;
+}
+
+/* Delays para escalonar la entrada */
+.delay-1 {
+    animation-delay: 0.1s;
+}
+
+.delay-2 {
+    animation-delay: 0.2s;
+}
+
+.delay-3 {
+    animation-delay: 0.3s;
+}
+
+.delay-4 {
+    animation-delay: 0.4s;
+}
+
+.delay-5 {
+    animation-delay: 0.5s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Section Header */
+.section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
     color: var(--primary-color);
-    margin-top: 0.2rem;
+    /* Fallback siempre visible */
+}
+
+.section-header p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* Info Cards */
+.info-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.info-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: var(--bg-primary);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color);
+}
+
+.icon-box {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(37, 99, 235, 0.1);
+    /* Primary color with opacity */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    font-size: 1.5rem;
     flex-shrink: 0;
 }
 
+.card-content h4 {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+}
+
+.card-content p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.card-content address {
+    font-style: normal;
+}
+
+/* Button */
 .location-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    background-color: var(--primary-color);
+    gap: 0.8rem;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
     color: white;
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
+    padding: 1rem 2rem;
+    border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
 }
 
 .location-btn:hover {
-    background-color: var(--primary-hover);
     transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
 }
 
 .btn-icon {
     font-size: 1.2rem;
 }
 
+/* Map */
+.map-wrapper {
+    position: relative;
+    padding: 10px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transform: rotate(2deg);
+    transition: transform 0.3s ease;
+}
+
+.map-wrapper:hover {
+    transform: rotate(0deg);
+}
+
 .map-container {
     width: 100%;
-    height: 400px;
+    height: 450px;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
 .map-container iframe {
     width: 100%;
     height: 100%;
     border: 0;
+    filter: grayscale(0%);
+    transition: filter 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .section-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .map-container {
+        height: 300px;
+    }
+
+    .info-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .location-container {
+        gap: 3rem;
+    }
+
+    .map-wrapper {
+        transform: none;
+    }
 }

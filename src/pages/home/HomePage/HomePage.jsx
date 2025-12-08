@@ -4,7 +4,7 @@ import ServicesSection from '@/components/home/ServicesSection/ServicesSection.j
 import ProcessSection from '@/components/home/ProcessSection/ProcessSection.jsx'
 import BudgetSection from '@/components/home/BudgetSection/BudgetSection.jsx'
 import LocationSection from '@/components/home/LocationSection/LocationSection.jsx'
-import ContactSection from '@/components/home/ContactSection/ContactSection.jsx'
+
 import './HomePage.css'
 
 function HomePage() {
@@ -23,7 +23,7 @@ function HomePage() {
         <ProcessSection />
         <BudgetSection />
         <LocationSection />
-        <ContactSection />
+
       </main>
     </>
   )

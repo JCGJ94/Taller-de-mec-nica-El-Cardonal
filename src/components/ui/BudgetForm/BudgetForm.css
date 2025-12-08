@@ -23,19 +23,6 @@
   margin-top: 0.5rem;
 }
 
-.status-message {
-  font-size: 0.8rem;
-  margin-top: 0.5rem;
-}
-
-.status-success {
-  color: #4ade80;
-}
-
-.status-error {
-  color: #f97373;
-}
-
 /* Hover effects for inputs */
 .budget-form input:hover,
 .budget-form select:hover,

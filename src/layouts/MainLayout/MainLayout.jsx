@@ -1,5 +1,5 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import ScrollToTop from '@/components/layout/ScrollToTop/ScrollToTop.jsx'
 import Navbar from '@/components/layout/Navbar/Navbar.jsx'
 import Footer from '@/components/layout/Footer/Footer.jsx'
@@ -10,12 +10,13 @@ import Divider from '@/components/ui/Divider/Divider.jsx'
 import HeroSection from '@/components/home/HeroSection/HeroSection.jsx'
 
 function MainLayout() {
+  const location = useLocation()
   const activeSection = useSectionObserver([
     'hero',
     'services',
     'process',
     'budget',
-    'contact'
+    'location',
   ])
 
   return (

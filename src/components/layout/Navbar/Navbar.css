@@ -2,6 +2,12 @@
   position: sticky;
   top: 0;
   z-index: 20;
+}
+
+.app-header-background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   background: var(--bg-main);
@@ -22,6 +28,11 @@
   display: flex;
   align-items: center;
   animation: fadeInLeft 0.6s ease-out;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
 }
 
 .app-logo {
@@ -31,7 +42,6 @@
   cursor: pointer;
 }
 
-/* Ajuste para unir logo y texto */
 .app-logo:nth-child(2) {
   margin-left: -12px;
   position: relative;
@@ -50,7 +60,6 @@
   font-size: 0.85rem;
 }
 
-/* Animación de entrada para los links */
 .app-nav>* {
   animation: fadeInUp 0.5s ease-out backwards;
 }
@@ -88,7 +97,6 @@
   border-radius: 999px;
 }
 
-/* subrayado con degradado verde-azul */
 .app-nav a::before {
   content: '';
   position: absolute;
@@ -123,8 +131,6 @@
   width: 70%;
   opacity: 1;
 }
-
-/* BOTONES SECCIÓN ---------------------------------- */
 
 .app-nav-section {
   background: transparent;
@@ -178,7 +184,6 @@
   margin-left: 0.5rem;
   padding: 0.5rem 1.1rem;
   border-radius: 999px;
-  /* Verde más oscuro para mejor contraste con texto blanco */
   background: linear-gradient(135deg, #16a34a, #15803d);
   color: #ffffff;
   font-weight: 600;
@@ -200,13 +205,153 @@
   box-shadow: 0 1px 4px rgba(34, 197, 94, 0.3);
 }
 
-@media (max-width: 768px) {
+/* Mobile Menu Toggle */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 100;
+  position: relative;
+}
+
+.hamburger-line {
+  width: 100%;
+  height: 3px;
+  background-color: var(--text-main);
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+  transform-origin: 1px;
+}
+
+.menu-open .hamburger-line:first-child {
+  transform: rotate(45deg);
+}
+
+.menu-open .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.menu-open .hamburger-line:last-child {
+  transform: rotate(-45deg);
+}
+
+.menu-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 40;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+/* Mobile Styles */
+@media (max-width: 950px) {
   .app-header-inner {
-    flex-direction: column;
-    align-items: flex-start;
+    justify-content: space-between;
+    padding: 0.75rem 1.25rem;
+  }
+
+  .menu-toggle {
+    display: flex !important;
+  }
+
+  .menu-overlay {
+    display: block;
   }
 
   .app-nav {
-    flex-wrap: wrap;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    height: 100dvh;
+    width: 85%;
+    max-width: 320px;
+    background: var(--bg-surface);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 5rem 1.5rem 2rem;
+    gap: 1.5rem;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 45;
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
+    border-left: 1px solid var(--border-soft);
+    display: flex !important;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .app-nav.active {
+    transform: translateX(0);
+  }
+
+  .app-nav>* {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    width: 100%;
+    text-align: left;
+    padding: 0.8rem 1rem;
+    border-radius: 0.5rem;
+  }
+
+  .app-nav a,
+  .app-nav-section {
+    font-size: 1rem;
+    justify-content: flex-start;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+  }
+
+  .app-nav a::before,
+  .app-nav-section::before {
+    display: none !important;
+  }
+
+  .app-nav-cta {
+    margin-left: 0;
+    margin-top: 1rem;
+    text-align: center;
+    justify-content: center;
+    font-size: 1rem;
+    padding: 0.8rem 1.1rem;
+    width: 100%;
+    display: flex !important;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 390px) {
+  .app-header-inner {
+    padding: 0.75rem 1rem;
+  }
+
+  .app-logo {
+    height: 50px;
+  }
+
+  .app-nav {
+    width: 90%;
+    padding: 4.5rem 1.25rem 2rem;
+  }
+
+  .app-nav a,
+  .app-nav-section {
+    font-size: 0.95rem;
+    padding: 0.7rem 0.9rem;
   }
 }

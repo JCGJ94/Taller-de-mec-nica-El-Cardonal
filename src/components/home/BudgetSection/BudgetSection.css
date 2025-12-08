@@ -5,3 +5,9 @@
   font-weight: 700;
   color: #ffffff;
 }
+
+@media (max-width: 768px) {
+  .budget-section h2 {
+    font-size: 1.5rem;
+  }
+}
